@@ -15,12 +15,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <div
-          onMouseLeave={ref.onMouseLeave}
-          onMouseOver={ref.onMouseOver}
-          ref={ref}
-          style={style}
-        >
+        <div ref={ref} style={style}>
           {hovered ? 'На меня навели мышку' : 'Наведи мышкой на меня'}
         </div>
       </header>
