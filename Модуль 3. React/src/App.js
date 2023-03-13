@@ -1,13 +1,11 @@
 import './App.css'
-import { useViewportSize } from './useViewportSize'
+import ReactTasks from './react-tasks/react-task'
 
 function App() {
-  const { height, width } = useViewportSize()
-
   return (
     <div className="App">
       <header className="App-header">
-        Width: {width}, height: {height}
+        <ReactTasks />
       </header>
     </div>
   )
