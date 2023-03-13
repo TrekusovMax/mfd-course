@@ -1,23 +1,12 @@
 import './App.css'
-import { useHover } from './useHover'
+
+import ReactTasks from './react-tasks/react-task'
 
 function App() {
-  const { hovered, ref } = useHover()
-  const style = {
-    padding: '50px',
-    backgroundColor: 'red',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    fontSize: '30px',
-  }
-
   return (
     <div className="App">
       <header className="App-header">
-        <div ref={ref} style={style}>
-          {hovered ? 'На меня навели мышку' : 'Наведи мышкой на меня'}
-        </div>
+        <ReactTasks />
       </header>
     </div>
   )
