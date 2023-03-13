@@ -1,11 +1,11 @@
 import React from 'react'
-import Task1 from './task1'
+import Task6 from './task6'
 const ReactTasks = () => {
   return (
     <>
-      <div className="bordered">
-        <h3>Задание 1</h3>
-        <Task1 />
+      <div>
+        <h3>Дополнительное задание 2</h3>
+        <Task6 />
       </div>
     </>
   )
