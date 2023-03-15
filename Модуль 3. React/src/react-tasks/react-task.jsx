@@ -1,12 +1,14 @@
 import React from 'react'
-import Task1 from './task1'
+import Signup from './../components/Signup'
+
 const ReactTasks = () => {
+  const handleSubmit = (props) => {
+    console.log(props)
+  }
+
   return (
     <>
-      <div className="bordered">
-        <h3>Задание 1</h3>
-        <Task1 />
-      </div>
+      <Signup onSubmit={handleSubmit} />
     </>
   )
 }
