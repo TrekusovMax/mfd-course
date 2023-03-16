@@ -1,13 +1,10 @@
 import TextInput from './elements/TextInput'
-import './Components.css'
+
 import { useState } from 'react'
 
 const Signin = (props) => {
   const { onSubmit } = props
-  const [inputs, setInputs] = useState({
-    login: '',
-    password: '',
-  })
+  const [inputs, setInputs] = useState({})
   const handleSubmit = (e) => {
     e.preventDefault()
     onSubmit(inputs)
@@ -23,7 +20,7 @@ const Signin = (props) => {
       <h2>Sing In</h2>
       <TextInput required type="email" name="login" label="Email" />
       <TextInput required type="password" name="password" label="Password" />
-      <button className="btn">Войти</button>
+      <button className="btn">Login</button>
     </form>
   )
 }

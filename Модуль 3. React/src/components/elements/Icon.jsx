@@ -4,9 +4,11 @@ const Icon = (props) => {
   const { size } = props
 
   return (
-    <i className="fa">
-      <FontAwesomeIcon style={{ color: '#ccc' }} size={size ? size : '1x'} icon={faAt} />
-    </i>
+    <FontAwesomeIcon
+      style={{ color: '#999' }}
+      size={size ? size : '1x'}
+      icon={faAt}
+    />
   )
 }
 

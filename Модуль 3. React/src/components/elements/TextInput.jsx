@@ -1,7 +1,6 @@
 import Icon from './Icon'
 const TextInput = (props) => {
-  const { type, required, name, label, icon, placeholder } = props
-
+  const { type, required, name, label, icon, placeholder, error } = props
   return (
     <div className="inputBlock">
       <div>
@@ -9,7 +8,7 @@ const TextInput = (props) => {
       </div>
       {icon ? (
         <div className="inputWithIcon">
-          <Icon />
+          <Icon size={'2xs'} />
           <input
             placeholder={placeholder}
             required={required}
@@ -23,7 +22,7 @@ const TextInput = (props) => {
           placeholder={placeholder}
           required={required}
           name={name}
-          className="input"
+          className={`input ${error ? 'error' : ''}`}
           type={type}
         />
       )}
