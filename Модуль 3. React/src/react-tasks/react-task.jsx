@@ -7,7 +7,7 @@ import '../components/Components.css'
 
 const ReactTasks = () => {
   const handleSubmit = (props) => {
-    console.log(props)
+    alert(JSON.stringify(props))
   }
 
   return (
