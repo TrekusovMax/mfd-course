@@ -9,6 +9,7 @@ import Task3 from './task3'
 import Task1 from './task1'
 import Task2 from './task2'
 import Task4 from './task4'
+import Task5 from './task5'
 
 const ReactTasks = () => {
   const handleSubmit = (props) => {
@@ -17,6 +18,9 @@ const ReactTasks = () => {
 
   return (
     <>
+
+
+
       <header className="navBar">
         <nav>
           <ul>
@@ -35,6 +39,8 @@ const ReactTasks = () => {
       </Routes>
 
       <div>
+      <h3>Дополнительное Задание 1</h3>
+      <Task5 />      
        <h3>Задание 4</h3>
         <Task4 />
         <h3>Задание 3</h3>
