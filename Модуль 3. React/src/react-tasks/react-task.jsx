@@ -1,16 +1,43 @@
 import React from 'react'
+import { Routes, Route, Link } from 'react-router-dom'
+import Signin from '../components/Signin'
+import Signup from './../components/Signup'
+import '../components/Components.css'
 import Task1 from './task1'
 import Task2 from './task2'
 
 const ReactTasks = () => {
+  const handleSubmit = (props) => {
+    alert(JSON.stringify(props))
+  }
+
   return (
     <>
+
+      <header className="navBar">
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Sign in</Link>
+            </li>
+            <li>
+              <Link to="/register">Sign up</Link>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <Routes>
+        <Route path="/" element={<Signin onSubmit={handleSubmit} />} />
+        <Route path="/register" element={<Signup onSubmit={handleSubmit} />} />
+      </Routes>
+
       <div>
         <h3>Задание 1</h3>
         <Task1 />
         <h3>Задание 2</h3>
         <Task2 />
       </div>
+
     </>
   )
 }
