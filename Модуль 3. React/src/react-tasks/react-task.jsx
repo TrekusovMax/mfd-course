@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 import { Routes, Route, Link } from 'react-router-dom'
 import Signin from '../components/Signin'
 import Signup from './../components/Signup'
@@ -10,6 +9,7 @@ import Task1 from './task1'
 import Task2 from './task2'
 import Task4 from './task4'
 import Task5 from './task5'
+import Task6 from './task6'
 
 const ReactTasks = () => {
   const handleSubmit = (props) => {
@@ -18,10 +18,7 @@ const ReactTasks = () => {
 
   return (
     <>
-
-
-
-      <header className="navBar">
+    <header className="navBar">
         <nav>
           <ul>
             <li>
@@ -39,6 +36,8 @@ const ReactTasks = () => {
       </Routes>
 
       <div>
+      <h3>Дополнительное задание 2</h3>
+        <Task6 />
       <h3>Дополнительное Задание 1</h3>
       <Task5 />      
        <h3>Задание 4</h3>
@@ -49,6 +48,7 @@ const ReactTasks = () => {
         <Task2 />
         <h3>Задание 1</h3>
         <Task1 />       
+
       </div>
 
     </>
