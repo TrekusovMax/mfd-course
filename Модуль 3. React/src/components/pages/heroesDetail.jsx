@@ -1,11 +1,13 @@
 import React from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Navigate, useNavigate, useParams } from 'react-router-dom'
 import data from '../data/characters.json'
 const HeroesDetail = () => {
   const { id } = useParams()
   const navigate = useNavigate()
   const hero = data.filter((d) => d.id === Number(id))[0]
-
+  if (!hero) {
+    return <Navigate to="/heroes" />
+  }
   return (
     <div className="grid mt-3 place-items-center grid-rows-3 grid-flow-col gap-3">
       <div className="row-span-2 place-self-end">
@@ -19,8 +21,7 @@ const HeroesDetail = () => {
         <button
           onClick={() => navigate(-1)}
           type="button"
-          className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
-        >
+          className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
           Назад
         </button>
       </div>
