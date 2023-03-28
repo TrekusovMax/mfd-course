@@ -18,9 +18,27 @@ const ReactTasks = () => {
 
   return (
     <>
-    <header className="navBar">
-        <nav>
+      <header className="navBar">
+        <nav style={{ position: 'relative' }}>
           <ul>
+            <li>
+              <Link to="/task1">task 1</Link>
+            </li>
+            <li>
+              <Link to="/task2">task 2</Link>
+            </li>
+            <li>
+              <Link to="/task3">task 3</Link>
+            </li>
+            <li>
+              <Link to="/task4">task 4</Link>
+            </li>
+            <li>
+              <Link to="/task5">task 5</Link>
+            </li>
+            <li>
+              <Link to="/task6">task 6</Link>
+            </li>
             <li>
               <Link to="/">Sign in</Link>
             </li>
@@ -31,26 +49,30 @@ const ReactTasks = () => {
         </nav>
       </header>
       <Routes>
+        <Route path="/task1" element={<Task1 />} />
+        <Route path="/task2" element={<Task2 />} />
+        <Route path="/task3" element={<Task3 />} />
+        <Route path="/task4" element={<Task4 />} />
+        <Route path="/task5" element={<Task5 />} />
+        <Route path="/task6" element={<Task6 />} />
         <Route path="/" element={<Signin onSubmit={handleSubmit} />} />
         <Route path="/register" element={<Signup onSubmit={handleSubmit} />} />
       </Routes>
 
       <div>
-      <h3>Дополнительное задание 2</h3>
+        {/*  <h3>Дополнительное задание 2</h3>
         <Task6 />
-      <h3>Дополнительное Задание 1</h3>
-      <Task5 />      
-       <h3>Задание 4</h3>
+        <h3>Дополнительное Задание 1</h3>
+        <Task5 />
+        <h3>Задание 4</h3>
         <Task4 />
         <h3>Задание 3</h3>
         <Task3 />
         <h3>Задание 2</h3>
-        <Task2 />
+        <Task2 /> 
         <h3>Задание 1</h3>
-        <Task1 />       
-
+        <Task1 />*/}
       </div>
-
     </>
   )
 }
