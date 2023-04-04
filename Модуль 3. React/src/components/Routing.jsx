@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
-import HomePage from './pages/homePage'
+//import HomePage from './pages/homePage'
 import Heroes from './pages/heroes'
 import Locations from './pages/locations'
 import Episodes from './pages/episodes'
@@ -8,10 +8,21 @@ import LocationDetail from './pages/locationDetail'
 import EpisodeDetail from './pages/episodeDetail'
 import Login from './pages/login'
 import PrivateRoute from './PrivateRoute'
+import { lazy, Suspense } from 'react'
 const Routing = () => {
+  const HomePage = lazy(() => import('./pages/homePage'))
+
   return (
     <Routes>
-      <Route path="/" element={<HomePage />} />
+      <Route
+        path="/"
+        element={
+          <Suspense>
+            <HomePage />
+          </Suspense>
+        }
+      />
+
       <Route path="/heroes">
         <Route
           index
