@@ -1,7 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import PrivateRoute from './PrivateRoute'
 import { lazy, Suspense } from 'react'
-import ErrorBoundary from './ErrorBoundary'
 
 const Routing = () => {
   const HomePage = lazy(() => import('./pages/homePage'))
@@ -22,9 +21,7 @@ const Routing = () => {
             index
             element={
               <PrivateRoute>
-                <ErrorBoundary>
-                  <Heroes />
-                </ErrorBoundary>
+                <Heroes />
               </PrivateRoute>
             }
           />

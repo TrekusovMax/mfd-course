@@ -4,10 +4,17 @@ import { characters } from '../data'
 import ButtonSort from '../elements/buttonSort'
 import SearchInput from '../elements/searchInput'
 import useSort from '../../hooks/useSort'
+import useCharacter from '../../hooks/useCharacter'
 
 const Heroes = () => {
+  const URL = 'https://rickandmortyapi.com/api/character'
   const [filteredData, setFilteredData] = useState(characters)
+  const [query, setQuery] = useState(URL)
+  const [pageNumber, setPageNumber] = useState(2)
+
   useSort(filteredData)
+
+  useCharacter(query, pageNumber)
 
   const handleFilter = ({ target }) => {
     const { value } = target
