@@ -1,18 +1,39 @@
-import React, { useEffect, useState } from 'react'
-import { Link, useSearchParams } from 'react-router-dom'
+import React, { useEffect, useState, useRef, useCallback } from 'react'
+
 import ButtonSort from '../elements/buttonSort'
 import SearchInput from '../elements/searchInput'
 import useSort from '../../hooks/useSort'
 import useCharacter from '../../hooks/useCharacter'
+import HeroesCard from './heroesCard'
 
 const Heroes = () => {
   const [pageNumber, setPageNumber] = useState(1)
-  const { loading, error, character } = useCharacter(pageNumber)
+  const { loading, hasMore, error, character } = useCharacter(pageNumber)
   const [filteredData, setFilteredData] = useState(character)
 
   useEffect(() => {
     setFilteredData(character)
   }, [character])
+
+  const observer = useRef()
+  const lastNodeRef = useCallback(
+    (node) => {
+      if (loading) return
+      if (observer.current) {
+        observer.current.disconnect()
+      }
+
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && hasMore) {
+          setPageNumber((prevState) => prevState + 1)
+        }
+      })
+      if (node) {
+        observer.current.observe(node)
+      }
+    },
+    [loading, hasMore],
+  )
 
   useSort(filteredData)
 
@@ -35,34 +56,15 @@ const Heroes = () => {
       {error && <h1 className="text-red-700">Произошла ошибка</h1>}
       {filteredData && filteredData.length ? (
         <div className="grid grid-cols-4 my-4 gap-4">
-          {filteredData.map((d) => (
-            <div
-              key={d.id}
-              className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
-            >
-              <div className="flex my-5 flex-col items-center">
-                <img
-                  className="w-24 h-24 mb-3 rounded-full shadow-lg"
-                  src={`${d.image}`}
-                  alt={`${d.name}`}
-                />
-                <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
-                  {d.name}
-                </h5>
-                <span className="text-sm text-gray-500 dark:text-gray-400">
-                  {d.species}
-                </span>
-                <div className="flex mt-4 space-x-3 md:mt-6">
-                  <Link
-                    to={`/heroes/${d.id}`}
-                    className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                  >
-                    Подробнее
-                  </Link>
-                </div>
-              </div>
-            </div>
-          ))}
+          {filteredData.map((d, index) => {
+            if (filteredData.length === index + 1) {
+              return (
+                <HeroesCard heroes={d} lastNodeRef={lastNodeRef} key={d.id} />
+              )
+            } else {
+              return <HeroesCard heroes={d} key={d.id} />
+            }
+          })}
         </div>
       ) : (
         <p className="mt-[200px] text-3xl">{'Героев не найдено'}</p>
