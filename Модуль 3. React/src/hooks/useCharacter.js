@@ -1,13 +1,21 @@
 import axios from 'axios'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
-const useCharacter = (query, pageNumber) => {
+const useCharacter = (pageNumber) => {
+  const URL = 'https://rickandmortyapi.com/api/character'
+  const [character, setCharacters] = useState(null)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
+
   useEffect(() => {
-    axios.get(query, { page: pageNumber }).then((res) => {
-      console.log(res.data)
-    })
-  }, [query, pageNumber])
-  return null
+    setLoading(true)
+    axios
+      .get(URL, { params: { page: pageNumber } })
+      .then((responce) => setCharacters(responce.data.results))
+      .catch((err) => setError(err))
+      .finally(setLoading(false))
+  }, [pageNumber])
+  return { loading, error, character }
 }
 
 export default useCharacter
