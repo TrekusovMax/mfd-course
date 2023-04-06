@@ -3,12 +3,13 @@ import React, { useEffect, useState, useRef, useCallback } from 'react'
 import ButtonSort from '../elements/buttonSort'
 import SearchInput from '../elements/searchInput'
 import useSort from '../../hooks/useSort'
-import useCharacter from '../../hooks/useCharacter'
+import useData from '../../hooks/useData'
 import HeroesCard from './heroesCard'
 
 const Heroes = () => {
+  const url = 'https://rickandmortyapi.com/api/character'
   const [pageNumber, setPageNumber] = useState(1)
-  const { loading, hasMore, error, character } = useCharacter(pageNumber)
+  const { loading, hasMore, error, character } = useData(url, pageNumber)
   const [filteredData, setFilteredData] = useState(character)
 
   useEffect(() => {
