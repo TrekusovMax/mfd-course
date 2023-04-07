@@ -9,12 +9,12 @@ import HeroesCard from './heroesCard'
 const Heroes = () => {
   const url = 'https://rickandmortyapi.com/api/character'
   const [pageNumber, setPageNumber] = useState(1)
-  const { loading, hasMore, error, character } = useData(url, pageNumber)
-  const [filteredData, setFilteredData] = useState(character)
+  const { loading, hasMore, error, data } = useData(url, pageNumber)
+  const [filteredData, setFilteredData] = useState(data)
 
   useEffect(() => {
-    setFilteredData(character)
-  }, [character])
+    setFilteredData(data)
+  }, [data])
 
   const observer = useRef()
   const lastNodeRef = useCallback(
@@ -41,7 +41,7 @@ const Heroes = () => {
   const handleFilter = ({ target }) => {
     const { value } = target
 
-    const filter = character.filter(
+    const filter = data.filter(
       (d) => d.name.toLowerCase().indexOf(value.toLowerCase()) >= 0,
     )
     setFilteredData(filter)

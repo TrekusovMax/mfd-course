@@ -6,7 +6,7 @@ const HeroesDetail = () => {
   const navigate = useNavigate()
 
   const url = `https://rickandmortyapi.com/api/character/${id}`
-  const { loading, error, character } = useData(url, null, id)
+  const { loading, error, data } = useData(url, null, id)
 
   if (error) {
     return <Navigate to="/heroes" />
@@ -14,13 +14,13 @@ const HeroesDetail = () => {
   return (
     <>
       {loading && <p>Загрузка...</p>}
-      {character.id && (
+      {data.id && (
         <div className="grid mt-3 place-items-center grid-rows-3 grid-flow-col gap-3">
           <div className="row-span-2 place-self-end">
             <img
               className=" mb-3 h-auto max-w-xl rounded-lg shadow-xl dark:shadow-gray-800"
-              src={`${character.image}`}
-              alt={`${character.name}`}
+              src={`${data.image}`}
+              alt={`${data.name}`}
             />
           </div>
           <div className=" col-span-3  ">
@@ -33,27 +33,25 @@ const HeroesDetail = () => {
             </button>
           </div>
           <div className="col-span-1 place-self-center font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">
-            {`${character.name}`}
+            {`${data.name}`}
           </div>
           <div className="row-span-1 col-span-1 ">
             <div className=" max-w-md space-y-1 text-left  md:text-3xl lg:text-4xl">
               <p>
-                <span className="font-bold">Status:</span>{' '}
-                {`${character.status}`}
+                <span className="font-bold">Status:</span> {`${data.status}`}
               </p>
               <p>
-                <span className="font-bold">Species:</span>{' '}
-                {`${character.species}`}
+                <span className="font-bold">Species:</span> {`${data.species}`}
               </p>
-              {character.type && (
+              {data.type && (
                 <p>
                   <span className="font-bold">Type: </span>
-                  {character.type}
+                  {data.type}
                 </p>
               )}
               <p>
                 <span className="font-bold">Gender: </span>
-                {`${character.gender}`}
+                {`${data.gender}`}
               </p>
             </div>
           </div>
