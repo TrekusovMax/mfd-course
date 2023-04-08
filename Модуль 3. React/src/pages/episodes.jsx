@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import ButtonSort from '../elements/buttonSort'
 import SearchInput from '../elements/searchInput'
-import useSort from '../../hooks/useSort'
-import useData from '../../hooks/useData'
+import useSort from '../hooks/useSort'
+import useData from '../hooks/useData'
 import EpisodeCard from './episodeCard'
 
 const Episodes = () => {
@@ -16,6 +16,7 @@ const Episodes = () => {
   }, [data])
 
   const observer = useRef()
+  const searchValue = useRef()
   const lastNodeRef = useCallback(
     (node) => {
       if (loading) return
@@ -24,7 +25,7 @@ const Episodes = () => {
       }
 
       observer.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting && hasMore) {
+        if (entries[0].isIntersecting && hasMore && !searchValue.current) {
           setPageNumber((prevState) => prevState + 1)
         }
       })
@@ -39,6 +40,11 @@ const Episodes = () => {
 
   const handleFilter = ({ target }) => {
     const { value } = target
+    if (value === '') {
+      searchValue.current = undefined
+    } else {
+      searchValue.current = value
+    }
     const filter = data.filter(
       (d) => d.name.toLowerCase().indexOf(value.toLowerCase()) >= 0,
     )

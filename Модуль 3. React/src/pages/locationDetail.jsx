@@ -1,15 +1,15 @@
 import { Navigate, useNavigate, useParams } from 'react-router-dom'
-import useData from '../../hooks/useData'
+import useData from '../hooks/useData'
 
-const EpisodeDetail = () => {
+const LocationDetail = () => {
   const { id } = useParams()
   const navigate = useNavigate()
 
-  const url = `https://rickandmortyapi.com/api/episode/${id}`
+  const url = `https://rickandmortyapi.com/api/location/${id}`
   const { loading, error, data } = useData(url, null, id)
 
   if (error) {
-    return <Navigate to="/episode" />
+    return <Navigate to="/location" />
   }
   return (
     <>
@@ -20,13 +20,13 @@ const EpisodeDetail = () => {
             {`${data.name}`}
           </div>
           <div className="">
-            <div className="space-y-1 text-left  md:text-3xl lg:text-4xl">
+            <div className=" max-w-lg space-y-1 text-left  md:text-3xl lg:text-4xl">
               <p>
-                <span className="font-bold">Выход в эфир:</span>{' '}
-                {`${data.air_date}`}
+                <span className="font-bold">Type:</span> {`${data.type}`}
               </p>
               <p>
-                <span className="font-bold">Эпизод:</span> {`${data.episode}`}
+                <span className="font-bold">Dimension:</span>{' '}
+                {`${data.dimension}`}
               </p>
             </div>
           </div>
@@ -45,4 +45,4 @@ const EpisodeDetail = () => {
   )
 }
 
-export default EpisodeDetail
+export default LocationDetail
