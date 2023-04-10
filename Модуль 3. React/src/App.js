@@ -5,7 +5,9 @@ import ReactTasks from './react-tasks/react-task'
 function App() {
   return (
     <div className="App">
-      <ReactTasks />
+      <div className="App-header">
+        <ReactTasks />
+      </div>
     </div>
   )
 }

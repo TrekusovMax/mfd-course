@@ -12,7 +12,7 @@ const NavBar = () => {
         <ul className="text-xl flex flex-wrap items-center justify-around  flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0  md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
           <li>
             <NavLink
-              to="/"
+              to="/rick-morty"
               className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
               aria-current="page"
             >
@@ -21,7 +21,7 @@ const NavBar = () => {
           </li>
           <li>
             <NavLink
-              to="/heroes"
+              to="/rick-morty/heroes"
               className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
             >
               Герои
@@ -29,7 +29,7 @@ const NavBar = () => {
           </li>
           <li>
             <NavLink
-              to="/location"
+              to="/rick-morty/location"
               className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
             >
               Локации
@@ -37,7 +37,7 @@ const NavBar = () => {
           </li>
           <li>
             <NavLink
-              to="/episode"
+              to="/rick-morty/episode"
               className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
             >
               Эпизоды

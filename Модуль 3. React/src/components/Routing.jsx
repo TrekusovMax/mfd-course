@@ -16,7 +16,7 @@ const Routing = () => {
     <Suspense fallback="Загрузка...">
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/heroes">
+        <Route path="heroes">
           <Route
             index
             element={
@@ -34,7 +34,7 @@ const Routing = () => {
             }
           />
         </Route>
-        <Route path="/location">
+        <Route path="location">
           <Route
             index
             element={
@@ -52,7 +52,7 @@ const Routing = () => {
             }
           />
         </Route>
-        <Route path="/episode">
+        <Route path="episode">
           <Route
             index
             element={
@@ -70,8 +70,8 @@ const Routing = () => {
             }
           />
         </Route>
-        <Route path="/login" element={<Login />} />
-        <Route path="*" element={<Navigate to="/" />} />
+        <Route path="login" element={<Login />} />
+        <Route path="*" element={<Navigate to="/rick-morty" />} />
       </Routes>
     </Suspense>
   )
