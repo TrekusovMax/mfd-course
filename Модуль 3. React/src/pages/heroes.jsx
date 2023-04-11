@@ -48,26 +48,22 @@ const Heroes = () => {
       searchValue.current = value
     }
 
-    const filter = data.filter(
-      (d) => d.name.toLowerCase().indexOf(value.toLowerCase()) >= 0,
-    )
+    const filter = data.filter((d) => d.name.toLowerCase().indexOf(value.toLowerCase()) >= 0)
     setFilteredData(filter)
   }
   return (
     <div>
-      <div className="flex justify-between">
+      <div className="flex md:justify-center lg:justify-between sm:mx-5   flex-col md:flex-row sm:justify-center mx-5">
         <SearchInput label={'Поиск героя'} onChange={handleFilter} />
         <ButtonSort />
       </div>
       {loading && <h2>Загрузка...</h2>}
       {error && <h1 className="text-red-700">Произошла ошибка</h1>}
       {filteredData && filteredData.length ? (
-        <div className="grid grid-cols-4 my-4 gap-4">
+        <div className="grid lg:grid-cols-4 justify-items-center md:grid-cols-2 my-4 gap-4 sm:grid-cols-1">
           {filteredData.map((d, index) => {
             if (filteredData.length === index + 1) {
-              return (
-                <HeroesCard heroes={d} lastNodeRef={lastNodeRef} key={d.id} />
-              )
+              return <HeroesCard heroes={d} lastNodeRef={lastNodeRef} key={d.id} />
             } else {
               return <HeroesCard heroes={d} key={d.id} />
             }
