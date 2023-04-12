@@ -1,6 +1,7 @@
 const staticCacheName = 'static-site'
 const dynamicCacheName = 'dinamic-site'
 const assets = [
+  '/offline',
   '/src/pages/homePage.jsx',
   '/src/App.css',
   '/src/App.jsx',
@@ -18,7 +19,7 @@ self.addEventListener('activate', async (event) => {
   await Promise.all(
     cachesKeysArr
       .filter((key) => key !== staticCacheName && key !== dynamicCacheName)
-      .map(caches.delete(key)),
+      .map((key) => caches.delete(key)),
   )
 })
 
@@ -48,6 +49,6 @@ async function networkFirst(request) {
     return response
   } catch (e) {
     const cached = await cache.match(request)
-    return cached
+    return cached ?? (await cache.match('/src/pages/offline.jsx'))
   }
 }

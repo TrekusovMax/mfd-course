@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import PrivateRoute from './PrivateRoute'
 import { lazy, Suspense } from 'react'
+import Offline from '../pages/offline'
 
 const Routing = () => {
   const HomePage = lazy(() => import('../pages/homePage'))
@@ -71,6 +72,7 @@ const Routing = () => {
           />
         </Route>
         <Route path="/login" element={<Login />} />
+        <Route path="/offline" element={<Offline />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Suspense>
