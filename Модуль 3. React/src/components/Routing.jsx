@@ -6,22 +6,67 @@ import Episodes from './pages/episodes'
 import HeroesDetail from './pages/heroesDetail'
 import LocationDetail from './pages/locationDetail'
 import EpisodeDetail from './pages/episodeDetail'
+import Login from './pages/login'
+import PrivateRoute from './PrivateRoute'
 const Routing = () => {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/heroes">
-        <Route index element={<Heroes />} />
-        <Route path=":id" element={<HeroesDetail />} />
+        <Route
+          index
+          element={
+            <PrivateRoute>
+              <Heroes />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path=":id"
+          element={
+            <PrivateRoute>
+              <HeroesDetail />
+            </PrivateRoute>
+          }
+        />
       </Route>
       <Route path="/location">
-        <Route index element={<Locations />} />
-        <Route path=":id" element={<LocationDetail />} />
+        <Route
+          index
+          element={
+            <PrivateRoute>
+              <Locations />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path=":id"
+          element={
+            <PrivateRoute>
+              <LocationDetail />
+            </PrivateRoute>
+          }
+        />
       </Route>
       <Route path="/episode">
-        <Route index element={<Episodes />} />
-        <Route path=":id" element={<EpisodeDetail />} />
+        <Route
+          index
+          element={
+            <PrivateRoute>
+              <Episodes />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path=":id"
+          element={
+            <PrivateRoute>
+              <EpisodeDetail />
+            </PrivateRoute>
+          }
+        />
       </Route>
+      <Route path="/login" element={<Login />} />
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   )
