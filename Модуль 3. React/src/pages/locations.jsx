@@ -45,7 +45,7 @@ const Locations = () => {
     } else {
       searchValue.current = value
     }
-    const filter = data.filter((d) => d.name.toLowerCase().indexOf(value.toLowerCase()) >= 0)
+    const filter = data.filter((item) => item.name.toLowerCase().indexOf(value.toLowerCase()) >= 0)
     setFilteredData(filter)
   }
   return (
@@ -58,11 +58,11 @@ const Locations = () => {
       {error && <h1 className="text-red-700">Произошла ошибка</h1>}
       {filteredData.length ? (
         <div className="grid lg:grid-cols-4 justify-items-center md:grid-cols-2 my-4 gap-4 sm:grid-cols-1">
-          {filteredData.map((d, index) => {
+          {filteredData.map((data, index) => {
             if (filteredData.length === index + 1) {
-              return <LocationCard locations={d} lastNodeRef={lastNodeRef} key={d.id} />
+              return <LocationCard locations={data} lastNodeRef={lastNodeRef} key={data.id} />
             } else {
-              return <LocationCard locations={d} key={d.id} />
+              return <LocationCard locations={data} key={data.id} />
             }
           })}
         </div>
