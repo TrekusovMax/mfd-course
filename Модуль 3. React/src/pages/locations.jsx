@@ -5,7 +5,7 @@ import useSort from '../hooks/useSort'
 import useData from '../hooks/useData'
 import LocationCard from './locationCard'
 
-const Locations = () => {
+export const Locations = () => {
   const url = 'https://rickandmortyapi.com/api/location'
   const [pageNumber, setPageNumber] = useState(1)
   const { loading, hasMore, error, data } = useData(url, pageNumber)
@@ -73,4 +73,4 @@ const Locations = () => {
   )
 }
 
-export default Locations
+

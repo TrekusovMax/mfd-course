@@ -6,7 +6,7 @@ import useSort from '../hooks/useSort'
 import useData from '../hooks/useData'
 import HeroesCard from './heroesCard'
 
-const Heroes = () => {
+export const Heroes = () => {
   const url = 'https://rickandmortyapi.com/api/character'
   const [pageNumber, setPageNumber] = useState(1)
   const { loading, hasMore, error, data } = useData(url, pageNumber)
@@ -75,5 +75,3 @@ const Heroes = () => {
     </div>
   )
 }
-
-export default Heroes

@@ -5,7 +5,7 @@ import useSort from '../hooks/useSort'
 import useData from '../hooks/useData'
 import EpisodeCard from './episodeCard'
 
-const Episodes = () => {
+export const Episodes = () => {
   const url = 'https://rickandmortyapi.com/api/episode'
   const [pageNumber, setPageNumber] = useState(1)
   const { loading, hasMore, error, data } = useData(url, pageNumber)
@@ -73,5 +73,3 @@ const Episodes = () => {
     </div>
   )
 }
-
-export default Episodes
