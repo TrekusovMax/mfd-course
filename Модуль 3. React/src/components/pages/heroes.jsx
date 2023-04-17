@@ -6,7 +6,7 @@ import useSort from '../../hooks/useSort'
 import useData from '../../hooks/useData'
 import HeroesCard from './heroesCard'
 
-const Heroes = () => {
+export const Heroes = () => {
   const url = 'https://rickandmortyapi.com/api/character'
   const [pageNumber, setPageNumber] = useState(1)
   const { loading, hasMore, error, data } = useData(url, pageNumber)
@@ -41,9 +41,7 @@ const Heroes = () => {
   const handleFilter = ({ target }) => {
     const { value } = target
 
-    const filter = data.filter(
-      (d) => d.name.toLowerCase().indexOf(value.toLowerCase()) >= 0,
-    )
+    const filter = data.filter((item) => item.name.toLowerCase().indexOf(value.toLowerCase()) >= 0)
     setFilteredData(filter)
   }
 
@@ -57,13 +55,11 @@ const Heroes = () => {
       {error && <h1 className="text-red-700">Произошла ошибка</h1>}
       {filteredData && filteredData.length ? (
         <div className="grid grid-cols-4 my-4 gap-4">
-          {filteredData.map((d, index) => {
+          {filteredData.map((data, index) => {
             if (filteredData.length === index + 1) {
-              return (
-                <HeroesCard heroes={d} lastNodeRef={lastNodeRef} key={d.id} />
-              )
+              return <HeroesCard heroes={data} lastNodeRef={lastNodeRef} key={data.id} />
             } else {
-              return <HeroesCard heroes={d} key={d.id} />
+              return <HeroesCard heroes={data} key={data.id} />
             }
           })}
         </div>
@@ -73,5 +69,3 @@ const Heroes = () => {
     </div>
   )
 }
-
-export default Heroes
