@@ -1,9 +1,10 @@
+import { products } from '../constants.js'
 import {
-  DECREASE_QUANTITY_ACTION,
   INCREASE_QUANTITY_ACTION,
+  DECREASE_QUANTITY_ACTION,
 } from './actions.js'
 
-export function productReducer(state = products, action) {
+export function productsReducer(state = products, action) {
   switch (action.type) {
     case INCREASE_QUANTITY_ACTION:
       return state.map((product) => {
@@ -13,17 +14,25 @@ export function productReducer(state = products, action) {
             quantity: product.quantity + 1,
           }
         }
+
         return product
       })
+
     case DECREASE_QUANTITY_ACTION:
       return state.map((product) => {
-        if (product.id === action.payload.id) {
+        if (product.id === action.payload.id && product.quantity > 0) {
           return {
             ...product,
             quantity: product.quantity - 1,
           }
         }
+
         return product
       })
+
+    default:
+      break
   }
+
+  return state
 }
