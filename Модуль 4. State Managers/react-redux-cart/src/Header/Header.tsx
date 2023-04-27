@@ -1,8 +1,7 @@
-import React from 'react'
-import { useStore } from 'react-redux'
+import { useAppStore } from '../redux/hooks'
 
 export const Header = () => {
-  const store = useStore()
+  const store = useAppStore()
   const handleTitleClick = () => {
     console.log(store.getState())
   }

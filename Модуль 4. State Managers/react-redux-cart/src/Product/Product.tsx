@@ -1,9 +1,15 @@
-import React, { memo } from 'react'
-import { useDispatch } from 'react-redux'
-import { decreaseQuantityActionCreator, increaseQuantityActionCreator } from '../redux/actions'
+import { memo } from 'react'
 
-export const Product = memo(({ product }) => {
-  const dispatch = useDispatch()
+import { decreaseQuantityActionCreator, increaseQuantityActionCreator } from '../redux/actions'
+import { IProduct } from '../types/IProduct'
+import { useAppDispatch } from '../redux/hooks'
+
+interface IProductProps {
+  product: IProduct
+}
+
+export const Product = memo(({ product }: IProductProps) => {
+  const dispatch = useAppDispatch()
 
   return (
     <li className="product">

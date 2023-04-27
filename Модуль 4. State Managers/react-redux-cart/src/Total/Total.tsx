@@ -1,9 +1,9 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
 import { round } from '../utils'
+import { useAppDispatch, useAppSelector } from '../redux/hooks'
+import { createOrderAction } from '../redux/actions'
 
 export function Total() {
-  const total = useSelector((state) => {
+  const total = useAppSelector((state) => {
     const subtotal = state.products.reduce((acc, product) => {
       return acc + product.price * product.quantity
     }, 0)
@@ -15,6 +15,9 @@ export function Total() {
       tax: round(tax),
     }
   })
+
+  const dispatch = useAppDispatch()
+  const disableBuyButton = useAppSelector((state) => state.order.loading)
   return (
     <table className="bill">
       <tbody>
@@ -29,6 +32,16 @@ export function Total() {
         <tr className="total">
           <td className="label">Total :</td>
           <td className="value">$ {total.total}</td>
+        </tr>
+        <tr>
+          <td colSpan={2} className="button-cell">
+            <button
+              className="main-button"
+              disabled={disableBuyButton}
+              onClick={() => dispatch(createOrderAction())}>
+              Buy
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>
