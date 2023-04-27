@@ -33,4 +33,3 @@ export function productsReducer(state = initialProducts, action: ProjectActions)
 
   return state
 }
-
