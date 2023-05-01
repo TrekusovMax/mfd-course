@@ -1,5 +1,5 @@
-import { RESET_ORDER_ACTION } from '../redux/actions'
 import { useAppDispatch, useAppSelector } from '../redux/hooks'
+import { resetOrder } from '../redux/orderReducer'
 
 export const OrderModal = () => {
   const dispatch = useAppDispatch()
@@ -11,11 +11,10 @@ export const OrderModal = () => {
     <div className="modal">
       <div className="modal-content">
         <h2>Order confirmed</h2>
-        <div className="main-button" onClick={() => dispatch({ type: RESET_ORDER_ACTION })}>
+        <div className="main-button" onClick={() => dispatch(resetOrder())}>
           Perfect!
         </div>
       </div>
     </div>
   )
 }
-

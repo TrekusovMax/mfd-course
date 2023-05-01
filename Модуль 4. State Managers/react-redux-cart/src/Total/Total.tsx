@@ -1,6 +1,7 @@
 import { round } from '../utils'
 import { useAppDispatch, useAppSelector } from '../redux/hooks'
-import { createOrderAction } from '../redux/actions'
+
+import { createOrder } from '../redux/orderReducer'
 
 export function Total() {
   const total = useAppSelector((state) => {
@@ -38,7 +39,8 @@ export function Total() {
             <button
               className="main-button"
               disabled={disableBuyButton}
-              onClick={() => dispatch(createOrderAction())}>
+              onClick={() => dispatch(createOrder())}
+            >
               Buy
             </button>
           </td>
