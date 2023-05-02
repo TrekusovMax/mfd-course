@@ -1,9 +1,18 @@
 import { combineReducers } from 'redux'
-import { productSlice } from './productsReducer'
+import { productApiSlice, productSlice } from './productsReducer'
 import { logActionMiddleware } from './logActionMiddleware'
-import { orderSlice } from './orderReducer'
-import thunkMiddleware from 'redux-thunk'
-import { persistReducer, persistStore } from 'redux-persist'
+import { orderApiSlice } from './orderReducer'
+
+import {
+  persistReducer,
+  persistStore,
+  FLUSH,
+  REGISTER,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+} from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
 import { configureStore } from '@reduxjs/toolkit'
@@ -15,14 +24,21 @@ const rootReducer = persistReducer(
   },
   combineReducers({
     products: productSlice.reducer,
-    order: orderSlice.reducer,
+    [orderApiSlice.reducerPath]: orderApiSlice.reducer,
+    [productApiSlice.reducerPath]: productApiSlice.reducer,
   }),
 )
 
 export const store = configureStore({
   reducer: rootReducer,
   devTools: true,
-  middleware: [thunkMiddleware, logActionMiddleware],
+  middleware(getDefaultMiddleware) {
+    return getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REGISTER, REHYDRATE, PAUSE, PERSIST, PURGE],
+      },
+    }).concat([productApiSlice.middleware, orderApiSlice.middleware, logActionMiddleware])
+  },
 })
 
 export const persistor = persistStore(store)
