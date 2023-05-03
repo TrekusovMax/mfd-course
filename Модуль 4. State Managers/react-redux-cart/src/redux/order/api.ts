@@ -11,5 +11,3 @@ export const orderApiSlice = createApi({
     }
   },
 })
-
-export const { useCreateOrderMutation } = orderApiSlice
