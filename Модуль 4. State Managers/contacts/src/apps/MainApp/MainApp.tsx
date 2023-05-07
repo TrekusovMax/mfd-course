@@ -37,7 +37,6 @@ export const MainApp = () => {
               index
               element={
                 <ContactListPage
-                  contactsState={contactsState}
                   favoriteContactsState={favoriteContactsState}
                   groupContactsState={groupContactsState}
                 />
@@ -48,22 +47,12 @@ export const MainApp = () => {
                 index
                 element={
                   <ContactListPage
-                    contactsState={contactsState}
                     favoriteContactsState={favoriteContactsState}
                     groupContactsState={groupContactsState}
                   />
                 }
               />
-              <Route
-                path=":contactId"
-                element={
-                  <ContactPage
-                    contactsState={contactsState}
-                    favoriteContactsState={favoriteContactsState}
-                    groupContactsState={groupContactsState}
-                  />
-                }
-              />
+              <Route path=":contactId" element={<ContactPage />} />
             </Route>
             <Route path="groups">
               <Route
@@ -103,4 +92,3 @@ export const MainApp = () => {
     </ThemeProvider>
   )
 }
-
