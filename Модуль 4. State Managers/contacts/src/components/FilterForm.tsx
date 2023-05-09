@@ -46,11 +46,11 @@ export const FilterForm = memo<FilterFormProps>(
                   ))}
                 </Form.Select>
               </Col>
-              <Col>
+              {/* <Col>
                 <Button variant={'primary'} type={'submit'}>
                   Применить
                 </Button>
-              </Col>
+              </Col> */}
             </Row>
           </Form>
         )}

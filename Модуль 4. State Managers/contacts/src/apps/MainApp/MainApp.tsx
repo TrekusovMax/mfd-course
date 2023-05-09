@@ -17,13 +17,14 @@ import { DATA_CONTACT, DATA_GROUP_CONTACT } from 'src/__data__'
 
 export const MainApp = () => {
   const contactsState = useState<ContactDto[]>(DATA_CONTACT)
+  const groupContactsState = useState<GroupContactsDto[]>(DATA_GROUP_CONTACT)
+
   const favoriteContactsState = useState<FavoriteContactsDto>([
     DATA_CONTACT[0].id,
     DATA_CONTACT[1].id,
     DATA_CONTACT[2].id,
     DATA_CONTACT[3].id,
   ])
-  const groupContactsState = useState<GroupContactsDto[]>(DATA_GROUP_CONTACT)
 
   return (
     <ThemeProvider
@@ -38,7 +39,6 @@ export const MainApp = () => {
               element={
                 <ContactListPage
                   favoriteContactsState={favoriteContactsState}
-                  groupContactsState={groupContactsState}
                 />
               }
             />
@@ -48,7 +48,6 @@ export const MainApp = () => {
                 element={
                   <ContactListPage
                     favoriteContactsState={favoriteContactsState}
-                    groupContactsState={groupContactsState}
                   />
                 }
               />
@@ -59,20 +58,14 @@ export const MainApp = () => {
                 index
                 element={
                   <GroupListPage
-                    contactsState={contactsState}
                     favoriteContactsState={favoriteContactsState}
-                    groupContactsState={groupContactsState}
                   />
                 }
               />
               <Route
                 path=":groupId"
                 element={
-                  <GroupPage
-                    contactsState={contactsState}
-                    favoriteContactsState={favoriteContactsState}
-                    groupContactsState={groupContactsState}
-                  />
+                  <GroupPage favoriteContactsState={favoriteContactsState} />
                 }
               />
             </Route>

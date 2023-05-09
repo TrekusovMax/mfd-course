@@ -7,17 +7,20 @@ import { GroupContactsDto } from 'src/types/dto/GroupContactsDto'
 import { GroupContactsCard } from 'src/components/GroupContactsCard'
 import { Empty } from 'src/components/Empty'
 import { ContactCard } from 'src/components/ContactCard'
-import { useAppStore } from 'src/redux/hooks'
+import { useAppSelector, useAppStore } from 'src/redux/hooks'
 
-export const GroupPage = memo<CommonPageProps>(({ groupContactsState }) => {
+export const GroupPage = memo<CommonPageProps>(() => {
   //получаем список всех контактов
-  const contactsState: ContactDto[] = useAppStore().getState().contacts
+  const contactsState: ContactDto[] = useAppSelector((state) => state.contacts)
+  const groupContactsState: GroupContactsDto[] = useAppSelector(
+    (state) => state.group,
+  )
   const { groupId } = useParams<{ groupId: string }>()
   const [contacts, setContacts] = useState<ContactDto[]>([])
   const [groupContacts, setGroupContacts] = useState<GroupContactsDto>()
 
   useEffect(() => {
-    const findGroup = groupContactsState[0].find(({ id }) => id === groupId)
+    const findGroup = groupContactsState.find(({ id }) => id === groupId)
     setGroupContacts(findGroup)
     setContacts(() => {
       if (findGroup) {
