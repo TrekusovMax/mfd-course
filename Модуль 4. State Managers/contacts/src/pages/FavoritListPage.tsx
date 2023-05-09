@@ -13,15 +13,19 @@ export const FavoritListPage = memo<CommonPageProps>(() => {
 
   useEffect(() => {
     setContacts(() => contactsState.filter(({ id }) => favorites.includes(id)))
-  }, [favorites])
+  }, [favorites, contactsState])
 
   return (
     <Row xxl={4} className="g-4">
-      {contacts.map((contact) => (
-        <Col key={contact.id}>
-          <ContactCard contact={contact} withLink />
-        </Col>
-      ))}
+      {contacts.length ? (
+        contacts.map((contact) => (
+          <Col key={contact.id}>
+            <ContactCard contact={contact} withLink />
+          </Col>
+        ))
+      ) : (
+        <span>No favorite contacts</span>
+      )}
     </Row>
   )
 })

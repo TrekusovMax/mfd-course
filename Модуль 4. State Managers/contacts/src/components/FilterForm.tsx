@@ -1,5 +1,5 @@
 import { Formik } from 'formik'
-import { Button, Col, Form, InputGroup, Row } from 'react-bootstrap'
+import { Col, Form, InputGroup, Row } from 'react-bootstrap'
 import { memo } from 'react'
 import { FormikConfig } from 'formik/dist/types'
 import { GroupContactsDto } from 'src/types/dto/GroupContactsDto'
@@ -46,11 +46,6 @@ export const FilterForm = memo<FilterFormProps>(
                   ))}
                 </Form.Select>
               </Col>
-              {/* <Col>
-                <Button variant={'primary'} type={'submit'}>
-                  Применить
-                </Button>
-              </Col> */}
             </Row>
           </Form>
         )}

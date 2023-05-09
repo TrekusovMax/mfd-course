@@ -4,7 +4,7 @@ import { Col, Row } from 'react-bootstrap'
 import { ContactCard } from 'src/components/ContactCard'
 import { FilterForm, FilterFormValues } from 'src/components/FilterForm'
 import { ContactDto } from 'src/types/dto/ContactDto'
-import { useAppDispatch, useAppSelector, useAppStore } from 'src/redux/hooks'
+import { useAppDispatch, useAppSelector } from 'src/redux/hooks'
 import { searchByName, getContactsList } from 'src/redux/contact'
 import { GroupContactsDto } from 'src/types/dto/GroupContactsDto'
 import { searchByGroup } from 'src/redux/contact'
@@ -46,11 +46,15 @@ export const ContactListPage = memo<CommonPageProps>(() => {
       </Col>
       <Col>
         <Row xxl={4} className="g-4">
-          {contactsState.map((contact) => (
-            <Col key={contact.id}>
-              <ContactCard contact={contact} withLink />
-            </Col>
-          ))}
+          {contactsState.length ? (
+            contactsState.map((contact) => (
+              <Col key={contact.id}>
+                <ContactCard contact={contact} withLink />
+              </Col>
+            ))
+          ) : (
+            <span>No contacts found</span>
+          )}
         </Row>
       </Col>
     </Row>
