@@ -4,6 +4,11 @@ import { FavoriteContactsDto } from 'src/types/dto/FavoriteContactsDto'
 
 export const favoriteStore = makeAutoObservable({
   favorites: [] as FavoriteContactsDto,
+  favoriteContacts: [] as ContactDto[],
+
+  setFavoriteContacts(contacts: ContactDto[]): void {
+    this.favoriteContacts = contacts
+  },
 
   getFavorites(): FavoriteContactsDto {
     return this.favorites

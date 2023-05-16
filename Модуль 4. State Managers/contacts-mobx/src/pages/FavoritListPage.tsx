@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Col, Row } from 'react-bootstrap'
 import { ContactCard } from 'src/components/ContactCard'
 import { ContactDto } from 'src/types/dto/ContactDto'
@@ -10,16 +10,16 @@ export const FavoritListPage = observer(() => {
   //получаем список всех контактов
   const contactsState: ContactDto[] = contactsStore.contacts
   const favorites = favoriteStore.favorites
-  const [contacts, setContacts] = useState<ContactDto[]>([])
+  const favoriteContacts: ContactDto[] = favoriteStore.favoriteContacts
 
   useEffect(() => {
-    setContacts(() => contactsState.filter(({ id }) => favorites.includes(id)))
+    favoriteStore.setFavoriteContacts(contactsState.filter(({ id }) => favorites.includes(id)))
   }, [favorites, contactsState])
 
   return (
     <Row xxl={4} className="g-4">
-      {contacts.length ? (
-        contacts.map((contact) => (
+      {favoriteContacts.length ? (
+        favoriteContacts.map((contact) => (
           <Col key={contact.id}>
             <ContactCard contact={contact} withLink />
           </Col>
