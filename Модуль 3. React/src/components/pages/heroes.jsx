@@ -41,7 +41,9 @@ export const Heroes = () => {
   const handleFilter = ({ target }) => {
     const { value } = target
 
+
     const filter = data.filter((item) => item.name.toLowerCase().indexOf(value.toLowerCase()) >= 0)
+
     setFilteredData(filter)
   }
 
@@ -55,6 +57,7 @@ export const Heroes = () => {
       {error && <h1 className="text-red-700">Произошла ошибка</h1>}
       {filteredData && filteredData.length ? (
         <div className="grid grid-cols-4 my-4 gap-4">
+
           {filteredData.map((data, index) => {
             if (filteredData.length === index + 1) {
               return <HeroesCard heroes={data} lastNodeRef={lastNodeRef} key={data.id} />
@@ -62,6 +65,7 @@ export const Heroes = () => {
               return <HeroesCard heroes={data} key={data.id} />
             }
           })}
+
         </div>
       ) : (
         <p className="mt-[200px] text-3xl">{'Героев не найдено'}</p>

@@ -39,7 +39,9 @@ export const Locations = () => {
 
   const handleFilter = ({ target }) => {
     const { value } = target
+
     const filter = data.filter((item) => item.name.toLowerCase().indexOf(value.toLowerCase()) >= 0)
+
     setFilteredData(filter)
   }
   return (
@@ -52,6 +54,7 @@ export const Locations = () => {
       {error && <h1 className="text-red-700">Произошла ошибка</h1>}
       {filteredData.length ? (
         <div className="grid grid-cols-4 my-4 gap-4">
+
           {filteredData.map((data, index) => {
             if (filteredData.length === index + 1) {
               return <LocationCard locations={data} lastNodeRef={lastNodeRef} key={data.id} />
@@ -59,6 +62,7 @@ export const Locations = () => {
               return <LocationCard locations={data} key={data.id} />
             }
           })}
+
         </div>
       ) : (
         <p className="mt-[200px] text-3xl">{'Локации не найдены'}</p>
