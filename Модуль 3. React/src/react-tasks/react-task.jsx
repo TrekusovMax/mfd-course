@@ -1,7 +1,9 @@
 import React from 'react'
 import { Link, Route, Routes } from 'react-router-dom'
-import '../components/Components.css'
-//import ReactRouterTask from './react-router-task'
+
+
+import ReactRouterTask from './react-router-task'
+
 import Task1 from './task1'
 import Task2 from './task2'
 import Task3 from './task3'
@@ -17,7 +19,7 @@ const ReactTasks = () => {
   }
   return (
     <>
-      {/*  <ReactRouterTask /> */}
+
       <header className="navBar">
         <nav style={{ position: 'relative' }}>
           <ul>
@@ -45,9 +47,10 @@ const ReactTasks = () => {
             <li>
               <Link to="/register">Sign up</Link>
             </li>
-            {/*  <li>
+            <li>
               <Link to="/rick-morty">Rick and Morty</Link>
-            </li> */}
+            </li>
+
           </ul>
         </nav>
       </header>
@@ -61,6 +64,8 @@ const ReactTasks = () => {
         <Route path="/task6" element={<Task6 />} />
         <Route path="/" element={<Signin onSubmit={handleSubmit} />} />
         <Route path="/register" element={<Signup onSubmit={handleSubmit} />} />
+        <Route path="/rick-morty/*" element={<ReactRouterTask />} />
+
       </Routes>
     </>
   )

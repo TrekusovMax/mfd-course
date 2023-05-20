@@ -7,7 +7,7 @@ const Login = () => {
   const location = useLocation()
   const navigate = useNavigate()
 
-  const from = location.state?.from || '/'
+  const from = location.state?.from || '/rick-morty'
 
   const handleSubmit = (e) => {
     e.preventDefault()

@@ -1,56 +1,68 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { location } from '../data'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import ButtonSort from '../elements/buttonSort'
 import SearchInput from '../elements/searchInput'
 import useSort from '../../hooks/useSort'
+import useData from '../../hooks/useData'
+import LocationCard from './locationCard'
 
-const Locations = () => {
-  const [filteredData, setFilteredData] = useState(location)
+export const Locations = () => {
+  const url = 'https://rickandmortyapi.com/api/location'
+  const [pageNumber, setPageNumber] = useState(1)
+  const { loading, hasMore, error, data } = useData(url, pageNumber)
+  const [filteredData, setFilteredData] = useState(data)
+
+  useEffect(() => {
+    setFilteredData(data)
+  }, [data])
+
+  const observer = useRef()
+  const lastNodeRef = useCallback(
+    (node) => {
+      if (loading) return
+      if (observer.current) {
+        observer.current.disconnect()
+      }
+
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && hasMore) {
+          setPageNumber((prevState) => prevState + 1)
+        }
+      })
+      if (node) {
+        observer.current.observe(node)
+      }
+    },
+    [loading, hasMore],
+  )
+
   useSort(filteredData)
 
   const handleFilter = ({ target }) => {
     const { value } = target
 
-    const filter = location.filter(
-      (d) => d.name.toLowerCase().indexOf(value.toLowerCase()) >= 0,
-    )
+    const filter = data.filter((item) => item.name.toLowerCase().indexOf(value.toLowerCase()) >= 0)
 
     setFilteredData(filter)
   }
-
   return (
     <div>
       <div className="flex justify-between">
-        <SearchInput label={'Поиск локации'} onChange={handleFilter} />
+        <SearchInput label={'Поиск героя'} onChange={handleFilter} />
         <ButtonSort />
       </div>
-
+      {loading && <h2>Загрузка...</h2>}
+      {error && <h1 className="text-red-700">Произошла ошибка</h1>}
       {filteredData.length ? (
         <div className="grid grid-cols-4 my-4 gap-4">
-          {filteredData.map((d) => (
-            <div
-              key={d.id}
-              className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
-            >
-              <div className="flex my-5 flex-col items-center">
-                <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
-                  {d.name}
-                </h5>
 
+          {filteredData.map((data, index) => {
+            if (filteredData.length === index + 1) {
+              return <LocationCard locations={data} lastNodeRef={lastNodeRef} key={data.id} />
+            } else {
+              return <LocationCard locations={data} key={data.id} />
+            }
+          })}
 
-                <div className="flex mt-4 space-x-3 md:mt-6">
-                  <Link
-                    to={`/location/${d.id}`}
-                    className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                  >
-
-                    Подробнее
-                  </Link>
-                </div>
-              </div>
-            </div>
-          ))}
         </div>
       ) : (
         <p className="mt-[200px] text-3xl">{'Локации не найдены'}</p>
@@ -58,5 +70,3 @@ const Locations = () => {
     </div>
   )
 }
-
-export default Locations

@@ -4,9 +4,11 @@ import ReactTasks from './react-tasks/react-task'
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+
+      <div className="App-header">
         <ReactTasks />
-      </header>
+      </div>
+
     </div>
   )
 }

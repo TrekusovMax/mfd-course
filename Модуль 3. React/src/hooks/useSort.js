@@ -2,7 +2,9 @@ import { useSearchParams } from 'react-router-dom'
 
 const useSort = (data) => {
   const [searchParams] = useSearchParams({ created: 'asc' })
-
+  if (data === null) {
+    return
+  }
   switch (searchParams.get('created')) {
     case 'asc':
       data.sort((a, b) => (a.created > b.created ? 1 : -1))
