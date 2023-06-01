@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  position: relative;
 }
 
 .App-logo {
@@ -44,4 +45,15 @@
 
 #navbar a.active {
   color: red;
+}
+
+button {
+  border: 1px solid snow;
+  border-radius: 10%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.task5 {
+  margin-top: 500px;
+
 }

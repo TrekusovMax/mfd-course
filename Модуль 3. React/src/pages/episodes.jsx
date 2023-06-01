@@ -45,7 +45,9 @@ export const Episodes = () => {
     } else {
       searchValue.current = value
     }
-    const filter = data.filter((item) => item.name.toLowerCase().indexOf(value.toLowerCase()) >= 0)
+    const filter = data.filter(
+      (item) => item.name.toLowerCase().indexOf(value.toLowerCase()) >= 0,
+    )
     setFilteredData(filter)
   }
 
@@ -61,7 +63,13 @@ export const Episodes = () => {
         <div className="grid grid-cols-4 my-4 gap-4">
           {filteredData.map((data, index) => {
             if (filteredData.length === index + 1) {
-              return <EpisodeCard locations={data} lastNodeRef={lastNodeRef} key={data.id} />
+              return (
+                <EpisodeCard
+                  locations={data}
+                  lastNodeRef={lastNodeRef}
+                  key={data.id}
+                />
+              )
             } else {
               return <EpisodeCard locations={data} key={data.id} />
             }

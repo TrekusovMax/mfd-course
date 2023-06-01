@@ -45,7 +45,9 @@ export const Locations = () => {
     } else {
       searchValue.current = value
     }
-    const filter = data.filter((item) => item.name.toLowerCase().indexOf(value.toLowerCase()) >= 0)
+    const filter = data.filter(
+      (item) => item.name.toLowerCase().indexOf(value.toLowerCase()) >= 0,
+    )
     setFilteredData(filter)
   }
   return (
@@ -60,7 +62,13 @@ export const Locations = () => {
         <div className="grid grid-cols-4 my-4 gap-4">
           {filteredData.map((data, index) => {
             if (filteredData.length === index + 1) {
-              return <LocationCard locations={data} lastNodeRef={lastNodeRef} key={data.id} />
+              return (
+                <LocationCard
+                  locations={data}
+                  lastNodeRef={lastNodeRef}
+                  key={data.id}
+                />
+              )
             } else {
               return <LocationCard locations={data} key={data.id} />
             }

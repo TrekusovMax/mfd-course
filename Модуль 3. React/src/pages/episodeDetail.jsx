@@ -9,7 +9,7 @@ const EpisodeDetail = () => {
   const { loading, error, data } = useData(url, null, id)
 
   if (error) {
-    return <Navigate to="/episode" />
+    return <Navigate to="/rick-morty/episode" />
   }
   return (
     <>

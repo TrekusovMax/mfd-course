@@ -9,7 +9,7 @@ const LocationDetail = () => {
   const { loading, error, data } = useData(url, null, id)
 
   if (error) {
-    return <Navigate to="/location" />
+    return <Navigate to="/rick-morty/location" />
   }
   return (
     <>
