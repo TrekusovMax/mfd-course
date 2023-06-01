@@ -48,7 +48,9 @@ export const Heroes = () => {
       searchValue.current = value
     }
 
-    const filter = data.filter((item) => item.name.toLowerCase().indexOf(value.toLowerCase()) >= 0)
+    const filter = data.filter(
+      (item) => item.name.toLowerCase().indexOf(value.toLowerCase()) >= 0,
+    )
     setFilteredData(filter)
   }
   return (
@@ -63,7 +65,13 @@ export const Heroes = () => {
         <div className="grid grid-cols-4 my-4 gap-4">
           {filteredData.map((data, index) => {
             if (filteredData.length === index + 1) {
-              return <HeroesCard heroes={data} lastNodeRef={lastNodeRef} key={data.id} />
+              return (
+                <HeroesCard
+                  heroes={data}
+                  lastNodeRef={lastNodeRef}
+                  key={data.id}
+                />
+              )
             } else {
               return <HeroesCard heroes={data} key={data.id} />
             }
