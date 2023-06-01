@@ -1,16 +1,19 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import PrivateRoute from './PrivateRoute'
-import { lazy, Suspense } from 'react'
+import { Suspense, lazy } from 'react'
+import { Heroes } from '../pages/heroes'
+import { Locations } from '../pages/locations'
+import { Episodes } from '../pages/episodes'
 
 const Routing = () => {
-  const HomePage = lazy(() => import('./pages/homePage'))
-  const Heroes = lazy(() => import('./pages/heroes'))
-  const HeroesDetail = lazy(() => import('./pages/heroesDetail'))
-  const Locations = lazy(() => import('./pages/locations'))
-  const LocationDetail = lazy(() => import('./pages/locationDetail'))
-  const Episodes = lazy(() => import('./pages/episodes'))
-  const EpisodeDetail = lazy(() => import('./pages/episodeDetail'))
-  const Login = lazy(() => import('./pages/login'))
+  const HomePage = lazy(() => import('../pages/homePage'))
+  //const Heroes = lazy(() => import('../pages/heroes'))
+  const HeroesDetail = lazy(() => import('../pages/heroesDetail'))
+  //const Locations = lazy(() => import('../pages/locations'))
+  const LocationDetail = lazy(() => import('../pages/locationDetail'))
+  //const Episodes = lazy(() => import('../pages/episodes'))
+  const EpisodeDetail = lazy(() => import('../pages/episodeDetail'))
+  const Login = lazy(() => import('../pages/login'))
 
   return (
     <Suspense fallback="Загрузка...">

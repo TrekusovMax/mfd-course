@@ -1,5 +1,5 @@
 import { Navigate, useNavigate, useParams } from 'react-router-dom'
-import useData from '../../hooks/useData'
+import useData from '../hooks/useData'
 
 const EpisodeDetail = () => {
   const { id } = useParams()

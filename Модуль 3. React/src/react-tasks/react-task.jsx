@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link, Route, Routes } from 'react-router-dom'
 
-
 import ReactRouterTask from './react-router-task'
 
 import Task1 from './task1'
@@ -10,8 +9,8 @@ import Task3 from './task3'
 import Task4 from './task4'
 import Task5 from './task5'
 import Task6 from './task6'
-import Signin from './../components/Signin'
-import Signup from './../components/Signup'
+//import Signin from './../components/Signin'
+//import Signup from './../components/Signup'
 
 const ReactTasks = () => {
   const handleSubmit = (props) => {
@@ -19,7 +18,6 @@ const ReactTasks = () => {
   }
   return (
     <>
-
       <header className="navBar">
         <nav style={{ position: 'relative' }}>
           <ul>
@@ -50,7 +48,6 @@ const ReactTasks = () => {
             <li>
               <Link to="/rick-morty">Rick and Morty</Link>
             </li>
-
           </ul>
         </nav>
       </header>
@@ -62,10 +59,9 @@ const ReactTasks = () => {
         <Route path="/task4" element={<Task4 />} />
         <Route path="/task5" element={<Task5 />} />
         <Route path="/task6" element={<Task6 />} />
-        <Route path="/" element={<Signin onSubmit={handleSubmit} />} />
-        <Route path="/register" element={<Signup onSubmit={handleSubmit} />} />
+        {/* <Route path="/" element={<Signin onSubmit={handleSubmit} />} /> */}
+        {/*   <Route path="/register" element={<Signup onSubmit={handleSubmit} />} /> */}
         <Route path="/rick-morty/*" element={<ReactRouterTask />} />
-
       </Routes>
     </>
   )
