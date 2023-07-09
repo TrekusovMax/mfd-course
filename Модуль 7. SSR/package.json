@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "3.1.1",
+    "@preline/dropdown": "^1.3.0",
     "@prisma/client": "4.15.0",
     "@tailwindcss/forms": "0.5.3",
     "@tanstack/react-query": "4.29.14",
@@ -19,6 +20,7 @@
     "@trpc/server": "10.31.0",
     "next": "13.4.6",
     "next-auth": "4.22.1",
+    "preline": "^1.9.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "7.44.3",

@@ -12,35 +12,32 @@ datasource db {
 
 model User {
   id Int @id @default(autoincrement())
-
-  name     String
-  email    String @unique
+  name String
+  email String @unique
   password String
 
-  events         Event[]
+  events Event[]
   participations Participation[]
 }
 
 model Event {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id            Int @id @default(autoincrement())
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  title         String
+  description   String?
+  date          DateTime
 
-  title       String
-  description String?
-  date        DateTime
-
-  authorId       Int
-  author         User            @relation(fields: [authorId], references: [id])
+  authorId      Int
+  author        User @relation(fields: [authorId], references: [id])
   participations Participation[]
 }
 
 model Participation {
-  userId  Int
-  eventId Int
+  userId      Int
+  eventId     Int
+  user        User @relation(fields: [userId], references: [id])
+  event       Event @relation(fields: [eventId], references: [id])
 
-  user  User  @relation(fields: [userId], references: [id])
-  event Event @relation(fields: [eventId], references: [id])
-
-  @@id([userId, eventId])
+  @@id([userId,eventId])
 }
