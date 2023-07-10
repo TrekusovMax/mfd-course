@@ -2,21 +2,26 @@ import { trpc } from '@/shared/api'
 
 type LeaveEventButtonProps = {
   eventId: number
+  userId: number
   onSuccess?: () => void
 }
 
-export const LeaveEventButton = ({ eventId, onSuccess }: LeaveEventButtonProps) => {
-  //const { mutate } = trpc.event.join.useMutation({ onSuccess })
+export const LeaveEventButton = ({
+  eventId,
+  userId,
+  onSuccess,
+}: LeaveEventButtonProps) => {
+  const { mutate } = trpc.event.leave.useMutation({ onSuccess })
 
   const handleClick = () => {
-    //mutate({ id: eventId })
-    console.log('Leave event click')
+    mutate({ eventId, userId })
   }
 
   return (
     <button
       className="h-10 px-6 font-semibold rounded-md bg-red-600 text-white"
-      onClick={handleClick}>
+      onClick={handleClick}
+    >
       Покинуть
     </button>
   )
