@@ -1,5 +1,4 @@
 import { useSession } from 'next-auth/react'
-import { Links } from './Links'
 import Link from 'next/link'
 import { AuthAction } from './AuthAction'
 
