@@ -1,7 +1,7 @@
-import { CreateEventSchema, JoinEventSchema } from "@/shared/api";
-import { prisma } from "../db";
-import { isAuth, procedure, router } from "../trpc";
-import { z } from "zod";
+import { CreateEventSchema, JoinEventSchema } from '@/shared/api'
+import { prisma } from '../db'
+import { isAuth, procedure, router } from '../trpc'
+import { z } from 'zod'
 
 export const eventRouter = router({
   findMany: procedure.query(async ({ ctx: { user } }) => {
@@ -9,18 +9,18 @@ export const eventRouter = router({
       include: {
         participations: true,
       },
-    });
+    })
 
     return events.map(({ participations, ...event }) => ({
       ...event,
       isJoined: participations.some(({ userId }) => userId === user?.id),
-    }));
+    }))
   }),
   findUnique: procedure
     .input(
       z.object({
         id: z.number(),
-      })
+      }),
     )
     .use(isAuth)
     .query(({ input }) => {
@@ -30,17 +30,19 @@ export const eventRouter = router({
           title: true,
           description: true,
           date: true,
+          authorId: true,
           participations: {
             select: {
               user: {
                 select: {
                   name: true,
+                  id: true,
                 },
               },
             },
           },
         },
-      });
+      })
     }),
   create: procedure
     .input(CreateEventSchema)
@@ -51,7 +53,7 @@ export const eventRouter = router({
           authorId: user.id,
           ...input,
         },
-      });
+      })
     }),
   join: procedure
     .input(JoinEventSchema)
@@ -62,6 +64,6 @@ export const eventRouter = router({
           eventId: input.id,
           userId: user.id,
         },
-      });
+      })
     }),
-});
+})

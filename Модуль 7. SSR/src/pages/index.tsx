@@ -1,4 +1,4 @@
-import { EventCard, Navbar } from '@/entities/event'
+import { EventCard } from '@/entities/event'
 import { JoinEventButton } from '@/features/join-event'
 import { trpc } from '@/shared/api'
 
@@ -12,11 +12,7 @@ export default function Home() {
           <li key={event.id} className="mb-6">
             <EventCard
               {...event}
-              action={
-                !event.isJoined && (
-                  <JoinEventButton eventId={event.id} onSuccess={refetch} />
-                )
-              }
+              action={!event.isJoined && <JoinEventButton eventId={event.id} onSuccess={refetch} />}
             />
           </li>
         ))}
@@ -24,4 +20,3 @@ export default function Home() {
     </>
   )
 }
-
