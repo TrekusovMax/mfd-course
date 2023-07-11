@@ -6,20 +6,21 @@ export default function EditEvent() {
   const router = useRouter()
 
   const { mutate } = trpc.event.edit.useMutation({
+    onError: (e) => {
+      console.log(e.message)
+    },
     onSuccess: (data) => {
-      //router.push(`/events/${data.id}`)
+      router.push(`/events/${data.id}`)
     },
   })
 
   const id = Number(router.query.id)
-  const { data, isLoading, refetch } = trpc.event.findUnique.useQuery({
+  const { data, isLoading } = trpc.event.findUnique.useQuery({
     id,
   })
 
   const handleSubmit = (data: EditEventSchema) => {
-    console.log('Edit click')
-
-    //mutate(data)
+    mutate(data)
   }
   if (isLoading) {
     return 'Loading...'
@@ -34,6 +35,7 @@ export default function EditEvent() {
       date={data.date}
       description={data.description}
       title={data.title}
+      eventId={id}
       onSubmit={handleSubmit}
     />
   )

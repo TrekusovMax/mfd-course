@@ -6,6 +6,7 @@ export const CreateEventSchema = z.object({
   date: z.coerce.date(),
 })
 export const EditEventSchema = z.object({
+  id: z.number(),
   title: z.string().min(1),
   description: z.string().optional(),
   date: z.coerce.date(),
