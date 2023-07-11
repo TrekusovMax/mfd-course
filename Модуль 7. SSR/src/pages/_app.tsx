@@ -9,6 +9,8 @@ function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
     import('preline')
   }, [])
+  
+  
   return (
     <div className="mx-auto max-w-4xl">
       <SessionProvider session={pageProps.session}>
@@ -22,10 +24,9 @@ function App({ Component, pageProps }: AppProps) {
 App.getInitialProps = async (ctx: AppContext) => {
   return {
     pageProps: {
-      session: await getSession(ctx.ctx),
+      session: await getSession(ctx.ctx),      
     },
   }
 }
 
 export default trpc.withTRPC(App)
-

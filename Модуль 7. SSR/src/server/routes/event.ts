@@ -1,5 +1,4 @@
-import { LeaveEventSchema } from './../../shared/api/schema'
-import { CreateEventSchema, JoinEventSchema } from '@/shared/api'
+import { EditEventSchema, LeaveEventSchema, CreateEventSchema, JoinEventSchema } from '@/shared/api'
 import { prisma } from '../db'
 import { isAuth, procedure, router } from '../trpc'
 import { z } from 'zod'
@@ -55,6 +54,19 @@ export const eventRouter = router({
           ...input,
         },
       })
+    }),
+  edit: procedure
+    .input(EditEventSchema)
+    .use(isAuth)
+    .mutation(({ input, ctx: { user } }) => {
+      console.log(input)
+
+      /* return prisma.event.create({
+        data: {
+          authorId: user.id,
+          ...input,
+        },
+      }) */
     }),
   join: procedure
     .input(JoinEventSchema)

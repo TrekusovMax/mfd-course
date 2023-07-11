@@ -34,9 +34,7 @@ export default function Event() {
     return 'No data'
   }
   let isParticipation = false
-  const findUser = data?.participations.find(
-    (user) => user.user.id === session.data?.user.id,
-  )
+  const findUser = data?.participations.find((user) => user.user.id === session.data?.user.id)
 
   if (findUser) {
     isParticipation = true
