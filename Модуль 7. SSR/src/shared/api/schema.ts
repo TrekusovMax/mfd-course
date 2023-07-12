@@ -1,5 +1,10 @@
 import { z } from 'zod'
 
+export const CreateUserSchema = z.object({
+  name: z.string().min(3),
+  email: z.string().email(),
+  password: z.string().min(5),
+})
 export const CreateEventSchema = z.object({
   title: z.string().min(1),
   description: z.string().optional(),
@@ -12,6 +17,7 @@ export const EditEventSchema = z.object({
   date: z.coerce.date(),
 })
 
+export type CreateUserSchema = z.infer<typeof CreateUserSchema>
 export type CreateEventSchema = z.infer<typeof CreateEventSchema>
 export type EditEventSchema = z.infer<typeof EditEventSchema>
 
