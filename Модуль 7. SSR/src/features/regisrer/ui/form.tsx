@@ -4,17 +4,21 @@ import { CreateUserSchema } from '@/shared/api'
 import { CancelButton } from '@/entities/components/CancelButton'
 
 type RegisterProps = {
+  error: {
+    haveError: boolean
+    message: string
+  }
   onSubmit: (data: CreateUserSchema) => void
 }
 
-export const RegisterForm = ({ onSubmit }: RegisterProps) => {
+export const RegisterForm = ({ onSubmit, error }: RegisterProps) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<CreateUserSchema>({
     resolver: zodResolver(CreateUserSchema),
-    mode: 'onChange',
+    mode: 'onBlur',
   })
 
   return (
@@ -27,7 +31,10 @@ export const RegisterForm = ({ onSubmit }: RegisterProps) => {
 
           <div className="mt-10 grid justify-items-center  gap-y-4 ">
             <div className="sm:col-span-4 w-[500px]">
-              <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900">
+              <label
+                htmlFor="name"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
                 Имя
               </label>
               <div className="mt-2">
@@ -39,11 +46,16 @@ export const RegisterForm = ({ onSubmit }: RegisterProps) => {
                 />
               </div>
               {errors.name && (
-                <p className="mt-3 text-sm leading-6 text-red-500">{errors.name.message}</p>
+                <p className="mt-3 text-sm leading-6 text-red-500">
+                  {errors.name.message}
+                </p>
               )}
             </div>
             <div className="sm:col-span-4 w-[500px]">
-              <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
                 Email
               </label>
               <div className="mt-2">
@@ -55,13 +67,21 @@ export const RegisterForm = ({ onSubmit }: RegisterProps) => {
                 />
               </div>
               {errors.email && (
-                <p className="mt-3 text-sm leading-6 text-red-500">{errors.email.message}</p>
+                <p className="mt-3 text-sm leading-6 text-red-500">
+                  {errors.email.message}
+                </p>
+              )}
+              {error.haveError && (
+                <p className="mt-3 text-sm leading-6 text-red-500">
+                  {error.message}
+                </p>
               )}
             </div>
             <div className="sm:col-span-4 w-[500px]">
               <label
                 htmlFor="password"
-                className="block text-sm font-medium leading-6 text-gray-900">
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
                 Пароль
               </label>
               <div className="mt-2">
@@ -73,7 +93,9 @@ export const RegisterForm = ({ onSubmit }: RegisterProps) => {
                 />
               </div>
               {errors.password && (
-                <p className="mt-3 text-sm leading-6 text-red-500">{errors.password.message}</p>
+                <p className="mt-3 text-sm leading-6 text-red-500">
+                  {errors.password.message}
+                </p>
               )}
             </div>
           </div>
@@ -84,7 +106,8 @@ export const RegisterForm = ({ onSubmit }: RegisterProps) => {
         <CancelButton />
         <button
           type="submit"
-          className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+          className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        >
           Создать
         </button>
       </div>

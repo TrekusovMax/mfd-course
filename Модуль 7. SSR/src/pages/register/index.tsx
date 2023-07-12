@@ -1,22 +1,29 @@
 import { RegisterForm } from '@/features/regisrer'
 import { CreateUserSchema, trpc } from '@/shared/api'
-import { useRouter } from 'next/router'
-
+import { signIn } from 'next-auth/react'
+import { useState } from 'react'
 
 export default function Register() {
-  const router = useRouter()
+  const [Error, setError] = useState({ haveError: false, message: '' })
+
+  const login = (email: string, password: string) => {
+    signIn('credentials', { callbackUrl: '/', email, password })
+  }
 
   const { mutate } = trpc.user.create.useMutation({
-    onSuccess: () => {
-      router.push('/')
+    onSuccess: (data) => {
+      login(data.email, data.password)
     },
     onError: (e) => {
-      console.log(e)
+      setError({
+        haveError: e.message.match(/email/)?.[0] === 'email',
+        message: 'Пользователь с таким email уже существует!',
+      })
     },
   })
 
   const handleSubmit = (data: CreateUserSchema) => {
     mutate(data)
   }
-  return <RegisterForm onSubmit={handleSubmit} />
+  return <RegisterForm error={Error} onSubmit={handleSubmit} />
 }

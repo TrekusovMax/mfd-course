@@ -1,9 +1,13 @@
 import { z } from 'zod'
 
 export const CreateUserSchema = z.object({
-  name: z.string().min(3),
-  email: z.string().email(),
-  password: z.string().min(5),
+  name: z
+    .string()
+    .min(3, { message: 'Имя должно содержать минимум 3 символа' }),
+  email: z.string().email({ message: 'Некорректный формат email' }),
+  password: z
+    .string()
+    .min(5, { message: 'Пароль должен содержать минимум 5 символов' }),
 })
 export const CreateEventSchema = z.object({
   title: z.string().min(1),
